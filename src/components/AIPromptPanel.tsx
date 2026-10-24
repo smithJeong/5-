@@ -109,37 +109,37 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl text-slate-100 flex flex-col gap-4">
+    <div className="bg-white border border-emerald-100 rounded-xl p-5 shadow-sm text-slate-900 flex flex-col gap-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex items-start sm:items-center gap-2.5">
-          <div className="p-2 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 shrink-0">
+          <div className="p-2 bg-emerald-100/80 border border-emerald-200 rounded-lg text-emerald-700 shrink-0">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-1.5">
-              <h2 className="text-sm sm:text-base font-bold text-white">
+              <h2 className="text-sm sm:text-base font-bold text-slate-900">
                 전문 대화형 생태 분석 AI 콘솔
               </h2>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-700/60 text-emerald-300 font-semibold whitespace-nowrap">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold whitespace-nowrap">
                 Gemini 3.8 Flash 엔진
               </span>
             </div>
-            <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
+            <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
               자연어 질문에서 기상·도로·생태 변수를 자동 추출하여 엄격한 시뮬레이션 파라미터 JSON을 생성합니다.
             </p>
           </div>
         </div>
 
         {/* View mode toggle */}
-        <div className="flex items-center self-start sm:self-auto bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs shrink-0">
+        <div className="flex items-center self-start sm:self-auto bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs shrink-0 shadow-2xs">
           <button
             type="button"
             onClick={() => setActiveTab('card')}
-            className={`px-3 py-1 rounded font-medium whitespace-nowrap transition ${
+            className={`px-3 py-1 rounded font-semibold whitespace-nowrap transition ${
               activeTab === 'card'
-                ? 'bg-emerald-600 text-white'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-emerald-800'
             }`}
           >
             정량 리포트 뷰
@@ -147,10 +147,10 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('json')}
-            className={`px-3 py-1 rounded font-medium flex items-center gap-1 whitespace-nowrap transition ${
+            className={`px-3 py-1 rounded font-semibold flex items-center gap-1 whitespace-nowrap transition ${
               activeTab === 'json'
-                ? 'bg-emerald-600 text-white'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-emerald-800'
             }`}
           >
             <FileCode className="w-3.5 h-3.5" />
@@ -161,7 +161,7 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
 
       {/* Preset Chips */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs font-semibold text-slate-400 flex items-center gap-1">
+        <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
           신속 분석 시나리오:
         </span>
         {PRESET_SCENARIOS.map((sc, idx) => (
@@ -172,7 +172,7 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
               setInputText(sc.prompt);
               handleAnalyze(sc.prompt);
             }}
-            className="text-xs px-2.5 py-1 rounded-full bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white transition cursor-pointer"
+            className="text-xs px-2.5 py-1 rounded-full bg-emerald-50/70 hover:bg-emerald-100/90 border border-emerald-200 text-emerald-900 transition cursor-pointer font-medium shadow-2xs"
           >
             {sc.title}
           </button>
@@ -187,12 +187,12 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="자연어로 도로 및 동물 시나리오를 질문하세요. (예: 비 오는 밤 시속 70km 4차선 도로에서 두꺼비 200마리 산란 이동)"
-            className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition shadow-inner"
           />
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="text-[11px] text-slate-400 flex items-center gap-2">
+          <div className="text-[11px] text-slate-500 flex items-center gap-2 font-medium">
             <span>기본값 적용 규칙: 강우(False), 야간(True), 시속(60km/h), 차선(2), 개체수(100마리)</span>
           </div>
 
@@ -200,7 +200,7 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
             type="button"
             onClick={() => handleAnalyze()}
             disabled={isLoading}
-            className="flex items-center gap-2 px-5 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-800 disabled:text-slate-500 text-white font-semibold text-xs rounded-lg transition shadow-md cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:bg-slate-200 disabled:text-slate-400 text-white font-semibold text-xs rounded-lg transition shadow-xs cursor-pointer"
           >
             {isLoading ? (
               <>
@@ -219,25 +219,25 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
 
       {/* Error notification */}
       {errorMessage && (
-        <div className="p-3 bg-rose-950/70 border border-rose-800 rounded-lg text-rose-200 text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+        <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-rose-800 text-xs flex items-center gap-2 shadow-2xs">
+          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       {/* Analysis Output View */}
       {currentResult && (
-        <div className="mt-2 border-t border-slate-800 pt-4">
+        <div className="mt-2 border-t border-emerald-100 pt-4">
           {activeTab === 'card' ? (
             <div className="space-y-4">
               {/* Scenario Summary Banner */}
-              <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg flex items-start gap-3">
-                <FileText className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+              <div className="p-3.5 bg-emerald-50/60 border border-emerald-100 rounded-lg flex items-start gap-3 shadow-2xs">
+                <FileText className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-[11px] font-bold text-sky-400 tracking-wider uppercase">
+                  <div className="text-[11px] font-bold text-emerald-800 tracking-wider uppercase">
                     시나리오 요약 (Scenario Summary)
                   </div>
-                  <div className="text-sm font-semibold text-slate-100">
+                  <div className="text-sm font-semibold text-slate-900 mt-0.5">
                     {currentResult.scenario_summary}
                   </div>
                 </div>
@@ -246,39 +246,39 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
               {/* Parameters & Simulation Results Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* 1. Extracted Parameters */}
-                <div className="p-4 bg-slate-950/50 border border-slate-800 rounded-lg">
-                  <div className="text-xs font-bold text-slate-400 mb-3 flex items-center gap-1.5">
-                    <Gauge className="w-4 h-4 text-emerald-400" />
+                <div className="p-4 bg-emerald-50/30 border border-emerald-100 rounded-xl space-y-3">
+                  <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                    <Gauge className="w-4 h-4 text-emerald-600" />
                     추출된 환경 파라미터 (Parameters)
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="p-2 bg-slate-900 rounded border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">야간 여부 (is_night)</span>
-                      <span className="font-bold text-indigo-300">
+                    <div className="p-2.5 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                      <span className="text-slate-500 block text-[10px]">야간 여부 (is_night)</span>
+                      <span className="font-bold text-indigo-700">
                         {currentResult.parameters.is_night ? 'TRUE (야간)' : 'FALSE (주간)'}
                       </span>
                     </div>
-                    <div className="p-2 bg-slate-900 rounded border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">강우 여부 (rain)</span>
-                      <span className="font-bold text-sky-300">
+                    <div className="p-2.5 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                      <span className="text-slate-500 block text-[10px]">강우 여부 (rain)</span>
+                      <span className="font-bold text-sky-700">
                         {currentResult.parameters.rain ? 'TRUE (우천)' : 'FALSE (비 안옴)'}
                       </span>
                     </div>
-                    <div className="p-2 bg-slate-900 rounded border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">차량 속도 (car_speed)</span>
-                      <span className="font-bold text-amber-300">
+                    <div className="p-2.5 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                      <span className="text-slate-500 block text-[10px]">차량 속도 (car_speed)</span>
+                      <span className="font-bold text-amber-700">
                         {currentResult.parameters.car_speed_kmh} km/h
                       </span>
                     </div>
-                    <div className="p-2 bg-slate-900 rounded border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">도로 차선 (lanes)</span>
-                      <span className="font-bold text-emerald-300">
+                    <div className="p-2.5 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                      <span className="text-slate-500 block text-[10px]">도로 차선 (lanes)</span>
+                      <span className="font-bold text-emerald-700">
                         {currentResult.parameters.lanes} 차선
                       </span>
                     </div>
-                    <div className="col-span-2 p-2 bg-slate-900 rounded border border-slate-800">
-                      <span className="text-slate-400 block text-[10px]">개체 수 (initial_population)</span>
-                      <span className="font-bold text-white">
+                    <div className="col-span-2 p-2.5 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                      <span className="text-slate-500 block text-[10px]">개체 수 (initial_population)</span>
+                      <span className="font-bold text-slate-900">
                         {currentResult.parameters.initial_population} 마리
                       </span>
                     </div>
@@ -286,19 +286,19 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
                 </div>
 
                 {/* 2. Simulation Results */}
-                <div className="p-4 bg-slate-950/50 border border-slate-800 rounded-lg">
-                  <div className="text-xs font-bold text-slate-400 mb-3 flex items-center gap-1.5">
-                    <Sparkles className="w-4 h-4 text-emerald-400" />
+                <div className="p-4 bg-emerald-50/30 border border-emerald-100 rounded-xl space-y-3">
+                  <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                    <Sparkles className="w-4 h-4 text-emerald-600" />
                     생존율 시뮬레이션 결과 (Simulation Results)
                   </div>
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-rose-400 font-medium">기본 생존율 (미설치):</span>
-                      <span className="text-base font-bold text-rose-400">
+                      <span className="text-rose-700 font-semibold">기본 생존율 (미설치):</span>
+                      <span className="text-base font-black text-rose-600">
                         {currentResult.simulation_results.survival_rate_baseline}%
                       </span>
                     </div>
-                    <div className="w-full bg-slate-800 rounded-full h-2">
+                    <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                       <div
                         className="bg-rose-500 h-2 rounded-full transition-all duration-500"
                         style={{
@@ -308,12 +308,12 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
                     </div>
 
                     <div className="flex items-center justify-between text-xs pt-1">
-                      <span className="text-emerald-400 font-medium">유도펜스·생태터널 설치 후:</span>
-                      <span className="text-base font-bold text-emerald-400">
+                      <span className="text-emerald-800 font-semibold">유도펜스·생태터널 설치 후:</span>
+                      <span className="text-base font-black text-emerald-700">
                         {currentResult.simulation_results.survival_rate_with_fence}%
                       </span>
                     </div>
-                    <div className="w-full bg-slate-800 rounded-full h-2">
+                    <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                       <div
                         className="bg-emerald-500 h-2 rounded-full transition-all duration-500"
                         style={{
@@ -322,9 +322,9 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
                       />
                     </div>
 
-                    <div className="p-2.5 mt-2 bg-emerald-950/60 border border-emerald-500/50 rounded-lg flex items-center justify-between">
-                      <span className="text-xs font-bold text-emerald-300">생존율 향상 기여도:</span>
-                      <span className="text-sm font-extrabold text-emerald-400">
+                    <div className="p-2.5 mt-2 bg-emerald-100/70 border border-emerald-200 rounded-lg flex items-center justify-between shadow-2xs">
+                      <span className="text-xs font-bold text-emerald-900">생존율 향상 기여도:</span>
+                      <span className="text-sm font-extrabold text-emerald-800">
                         +{currentResult.simulation_results.improvement_percentage}%p 비약적 상승
                       </span>
                     </div>
@@ -333,37 +333,37 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
               </div>
 
               {/* Policy Recommendation Cards */}
-              <div className="p-4 bg-slate-950/80 border border-slate-800 rounded-lg space-y-3">
-                <div className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-                  <Building2 className="w-4 h-4 text-sky-400" />
+              <div className="p-4 bg-emerald-50/40 border border-emerald-100 rounded-xl space-y-3">
+                <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <Building2 className="w-4 h-4 text-emerald-700" />
                   지자체 도로교통과·환경과 제출용 정책 및 권장 규격 (Policy Recommendation)
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 bg-slate-900 rounded-lg border border-slate-800">
-                    <span className="text-slate-400 block text-[10px] flex items-center gap-1 mb-1">
-                      <MapPin className="w-3 h-3 text-amber-400" /> 추천 설치 위치 및 구간
+                  <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                    <span className="text-slate-500 block text-[10px] flex items-center gap-1 mb-1 font-medium">
+                      <MapPin className="w-3 h-3 text-amber-600" /> 추천 설치 위치 및 구간
                     </span>
-                    <p className="font-semibold text-slate-200">
+                    <p className="font-semibold text-slate-800">
                       {currentResult.policy_recommendation.target_location_recommendation}
                     </p>
                   </div>
 
-                  <div className="p-3 bg-slate-900 rounded-lg border border-slate-800">
-                    <span className="text-slate-400 block text-[10px] flex items-center gap-1 mb-1">
-                      <Building2 className="w-3 h-3 text-emerald-400" /> 권장 시설 표준 규격
+                  <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                    <span className="text-slate-500 block text-[10px] flex items-center gap-1 mb-1 font-medium">
+                      <Building2 className="w-3 h-3 text-emerald-600" /> 권장 시설 표준 규격
                     </span>
-                    <p className="font-semibold text-slate-200">
+                    <p className="font-semibold text-slate-800">
                       {currentResult.policy_recommendation.structure_spec}
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3 bg-slate-900 rounded-lg border border-slate-800">
-                  <span className="text-slate-400 block text-[10px] mb-1">
+                <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs">
+                  <span className="text-slate-500 block text-[10px] mb-1 font-medium">
                     정량적 설득 공문 문구 (지자체 보고서용 3-4문장)
                   </span>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-slate-700 leading-relaxed font-normal">
                     {currentResult.policy_recommendation.report_text}
                   </p>
                 </div>
@@ -373,29 +373,29 @@ export const AIPromptPanel: React.FC<AIPromptPanelProps> = ({
             /* Strict JSON Viewer */
             <div className="relative">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-slate-400">
+                <span className="text-xs font-bold text-slate-600">
                   시스템 출력 규격 만족 JSON 응답 데이터:
                 </span>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={handleCopyJson}
-                    className="flex items-center gap-1 px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded text-xs transition border border-slate-700"
+                    className="flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 rounded text-xs font-semibold transition border border-slate-200 shadow-xs cursor-pointer"
                   >
-                    {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3 text-slate-500" />}
                     {copied ? '복사 완료' : 'JSON 복사'}
                   </button>
                   <button
                     type="button"
                     onClick={handleDownloadJson}
-                    className="flex items-center gap-1 px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-sky-300 rounded text-xs transition border border-slate-700"
+                    className="flex items-center gap-1 px-2.5 py-1 bg-white hover:bg-emerald-50 text-emerald-700 hover:text-emerald-800 rounded text-xs font-semibold transition border border-emerald-200 shadow-xs cursor-pointer"
                   >
                     <Download className="w-3 h-3" />
                     파일 다운로드 (.json)
                   </button>
                 </div>
               </div>
-              <pre className="p-4 bg-slate-950 rounded-lg border border-slate-800 font-mono text-xs text-emerald-300 overflow-x-auto max-h-96 leading-relaxed">
+              <pre className="p-4 bg-slate-900 rounded-lg border border-slate-800 font-mono text-xs text-emerald-300 overflow-x-auto max-h-96 leading-relaxed shadow-inner">
                 {JSON.stringify(currentResult, null, 2)}
               </pre>
             </div>

@@ -13,25 +13,25 @@ export const StructureSpecsModal: React.FC<StructureSpecsModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 text-slate-100 shadow-2xl relative my-8">
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-white border border-emerald-100 rounded-2xl max-w-2xl w-full p-6 text-slate-900 shadow-2xl relative my-8">
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition"
+          className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-2 mb-4">
-          <div className="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg">
+        <div className="flex items-center gap-2.5 mb-4">
+          <div className="p-2 bg-emerald-100/80 text-emerald-700 rounded-lg">
             <Layers className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">
+            <h3 className="text-base font-bold text-slate-900">
               양서·파충류 맞춤형 소형 생태통로 및 유도시설 표준 설계 기준
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               환경부 및 국립생태원 마이크로 로드킬 방지 공학 가이드라인
             </p>
           </div>
@@ -39,7 +39,7 @@ export const StructureSpecsModal: React.FC<StructureSpecsModalProps> = ({
 
         <div className="space-y-4 text-xs">
           {/* Visual SVG Engineering Diagram */}
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
+          <div className="bg-slate-900 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
             <svg
               viewBox="0 0 500 200"
               className="w-full max-h-56"
@@ -119,18 +119,18 @@ export const StructureSpecsModal: React.FC<StructureSpecsModalProps> = ({
                 산란지 하천
               </text>
             </svg>
-            <div className="text-[10px] text-slate-500 mt-2">
+            <div className="text-[10px] text-slate-400 mt-2">
               표준 횡단면도: 도로 하부 관통형 양서파충류 통로 및 노면 차단 유도펜스
             </div>
           </div>
 
           {/* Core Specifications */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-1.5">
-              <span className="font-bold text-emerald-400 block flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" /> 1. 미세 유도 펜스 (Drift Fence)
+            <div className="p-3.5 bg-emerald-50/50 border border-emerald-100 rounded-lg space-y-1.5 shadow-2xs">
+              <span className="font-bold text-emerald-800 block flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> 1. 미세 유도 펜스 (Drift Fence)
               </span>
-              <ul className="text-slate-300 space-y-1 pl-4 list-disc text-[11px]">
+              <ul className="text-slate-600 space-y-1 pl-4 list-disc text-[11px] leading-relaxed">
                 <li>지상 높이 40~50cm, 지하 매립 깊이 10cm 이상 (두더지/굴파기 방지)</li>
                 <li>상단부 10cm 너비의 90도 또는 45도 L자형 오버행 턱 (기어오름 탈출 차단)</li>
                 <li>재질: 내구성 높은 스테인리스 스틸 메쉬 (눈금 2mm 이하) 또는 아크릴 패널</li>
@@ -138,11 +138,11 @@ export const StructureSpecsModal: React.FC<StructureSpecsModalProps> = ({
               </ul>
             </div>
 
-            <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-lg space-y-1.5">
-              <span className="font-bold text-sky-400 block flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" /> 2. 소형 생태 터널 (Micro-Culvert)
+            <div className="p-3.5 bg-emerald-50/50 border border-emerald-100 rounded-lg space-y-1.5 shadow-2xs">
+              <span className="font-bold text-teal-800 block flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" /> 2. 소형 생태 터널 (Micro-Culvert)
               </span>
-              <ul className="text-slate-300 space-y-1 pl-4 list-disc text-[11px]">
+              <ul className="text-slate-600 space-y-1 pl-4 list-disc text-[11px] leading-relaxed">
                 <li>규격: 직경 40~60cm 프리캐스트 콘크리트 박스형 또는 원형관</li>
                 <li>자연 토양 바닥재 포설 (콘크리트 건조 방지 및 적정 습도 유지)</li>
                 <li>도로 중앙분리대 구간 상부 자연 채광창(격자 그레이팅)으로 조도 확보</li>
@@ -152,11 +152,11 @@ export const StructureSpecsModal: React.FC<StructureSpecsModalProps> = ({
           </div>
         </div>
 
-        <div className="mt-5 pt-3 border-t border-slate-800 flex justify-end">
+        <div className="mt-5 pt-3 border-t border-emerald-100 flex justify-end">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold transition"
+            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold transition cursor-pointer shadow-xs"
           >
             닫기
           </button>

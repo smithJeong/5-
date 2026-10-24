@@ -73,14 +73,16 @@ ${policy_recommendation.report_text}
   return (
     <div className="flex flex-col gap-4">
       {/* Top action toolbar */}
-      <div className="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-xl text-slate-100">
-        <div className="flex items-center gap-2">
-          <FileCheck className="w-5 h-5 text-emerald-400" />
+      <div className="flex items-center justify-between bg-white border border-emerald-100 p-4 rounded-xl text-slate-900 shadow-sm">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 bg-emerald-100/80 text-emerald-700 rounded-lg">
+            <FileCheck className="w-5 h-5" />
+          </div>
           <div>
-            <h3 className="text-sm font-bold text-white">
+            <h3 className="text-sm font-bold text-slate-900">
               지자체 제출용 정량적 생태 영향 평가서
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               도로교통과 및 환경과 예산 배정·조례 건의용 표준 행정 보고서 서식
             </p>
           </div>
@@ -90,15 +92,15 @@ ${policy_recommendation.report_text}
           <button
             type="button"
             onClick={handleCopyMarkdown}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold transition border border-slate-700 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 rounded-lg text-xs font-semibold transition border border-emerald-200/80 shadow-xs cursor-pointer"
           >
-            {copiedMd ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copiedMd ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
             {copiedMd ? '마크다운 복사됨' : '공문 텍스트 복사'}
           </button>
           <button
             type="button"
             onClick={handlePrint}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition shadow-md cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold transition shadow-xs cursor-pointer"
           >
             <Printer className="w-3.5 h-3.5" />
             PDF / 공문 인쇄

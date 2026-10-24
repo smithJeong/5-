@@ -773,21 +773,21 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
   const activeStats = simMode === 'fence' ? metrics.fence : metrics.baseline;
 
   return (
-    <div className="flex flex-col bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl text-slate-100">
+    <div className="flex flex-col bg-white border border-emerald-100 rounded-xl overflow-hidden shadow-sm text-slate-900">
       {/* Simulation Control Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 bg-slate-950/80 border-b border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 bg-emerald-50/60 border-b border-emerald-100">
         {/* Left: Mode toggles */}
-        <div className="flex items-center gap-1.5 bg-slate-900 p-1 rounded-lg border border-slate-800">
+        <div className="flex items-center gap-1.5 bg-white p-1 rounded-lg border border-emerald-200/80 shadow-xs">
           <button
             type="button"
             onClick={() => setSimMode('fence')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
               simMode === 'fence'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-emerald-700 hover:bg-emerald-50/60'
             }`}
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-200" />
             유도펜스·생태터널 설치 (권장)
           </button>
           <button
@@ -795,11 +795,11 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
             onClick={() => setSimMode('baseline')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
               simMode === 'baseline'
-                ? 'bg-rose-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-rose-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-rose-700 hover:bg-rose-50/60'
             }`}
           >
-            <ShieldAlert className="w-3.5 h-3.5 text-rose-300" />
+            <ShieldAlert className="w-3.5 h-3.5 text-rose-200" />
             미설치 (기본)
           </button>
           <button
@@ -807,11 +807,11 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
             onClick={() => setSimMode('split')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition ${
               simMode === 'split'
-                ? 'bg-sky-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-sky-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-sky-700 hover:bg-sky-50/60'
             }`}
           >
-            <Columns className="w-3.5 h-3.5 text-sky-300" />
+            <Columns className="w-3.5 h-3.5 text-sky-200" />
             화면 분할 비교
           </button>
         </div>
@@ -821,10 +821,10 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
           <button
             type="button"
             onClick={() => setIsPlaying(!isPlaying)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold transition shadow-xs ${
               isPlaying
-                ? 'bg-amber-600/90 hover:bg-amber-600 text-white'
-                : 'bg-emerald-600/90 hover:bg-emerald-600 text-white'
+                ? 'bg-amber-600 hover:bg-amber-700 text-white'
+                : 'bg-emerald-600 hover:bg-emerald-700 text-white'
             }`}
           >
             {isPlaying ? (
@@ -840,27 +840,29 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
           <button
             type="button"
             onClick={resetSimulation}
-            className="flex items-center gap-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold transition border border-slate-700"
+            className="flex items-center gap-1 px-3 py-1.5 bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 rounded-lg text-xs font-semibold transition border border-emerald-200/80 shadow-xs"
           >
-            <RotateCcw className="w-3.5 h-3.5" /> 재시작
+            <RotateCcw className="w-3.5 h-3.5 text-slate-500" /> 재시작
           </button>
           <button
             type="button"
             onClick={() => addAnimals(20)}
-            className="flex items-center gap-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-emerald-400 hover:text-emerald-300 rounded-lg text-xs font-semibold transition border border-slate-700"
+            className="flex items-center gap-1 px-3 py-1.5 bg-white hover:bg-emerald-50 text-emerald-700 hover:text-emerald-800 rounded-lg text-xs font-semibold transition border border-emerald-200/80 shadow-xs"
           >
-            <Plus className="w-3.5 h-3.5" /> 개체 +20
+            <Plus className="w-3.5 h-3.5 text-emerald-600" /> 개체 +20
           </button>
 
           {/* Speed multiplier toggle */}
-          <div className="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-0.5 text-xs">
+          <div className="flex items-center bg-white border border-emerald-200/80 rounded-lg p-0.5 text-xs shadow-xs">
             {[1, 2, 4].map((spd) => (
               <button
                 key={spd}
                 type="button"
                 onClick={() => setSimSpeedMult(spd)}
-                className={`px-2 py-1 rounded text-[11px] font-bold ${
-                  simSpeedMult === spd ? 'bg-slate-700 text-sky-400' : 'text-slate-400 hover:text-white'
+                className={`px-2 py-1 rounded text-[11px] font-bold transition ${
+                  simSpeedMult === spd
+                    ? 'bg-emerald-600 text-white shadow-2xs'
+                    : 'text-slate-600 hover:text-emerald-700'
                 }`}
               >
                 {spd}x
@@ -876,13 +878,13 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
             onClick={() =>
               onParametersChange?.({ ...parameters, rain: !parameters.rain })
             }
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition ${
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition shadow-xs ${
               parameters.rain
-                ? 'bg-sky-950/80 border-sky-500 text-sky-300'
-                : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-sky-50 border-sky-300 text-sky-800'
+                : 'bg-white border-emerald-200/80 text-slate-600 hover:text-slate-900 hover:bg-emerald-50/40'
             }`}
           >
-            <CloudRain className="w-3.5 h-3.5" />
+            <CloudRain className={`w-3.5 h-3.5 ${parameters.rain ? 'text-sky-600' : 'text-slate-400'}`} />
             {parameters.rain ? '우천 중' : '맑음'}
           </button>
           <button
@@ -890,20 +892,24 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
             onClick={() =>
               onParametersChange?.({ ...parameters, is_night: !parameters.is_night })
             }
-            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition ${
+            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition shadow-xs ${
               parameters.is_night
-                ? 'bg-indigo-950/80 border-indigo-500 text-indigo-300'
-                : 'bg-amber-950/80 border-amber-500 text-amber-300'
+                ? 'bg-indigo-50 border-indigo-300 text-indigo-800'
+                : 'bg-amber-50 border-amber-300 text-amber-800'
             }`}
           >
-            {parameters.is_night ? <Moon className="w-3.5 h-3.5" /> : <Sun className="w-3.5 h-3.5" />}
+            {parameters.is_night ? (
+              <Moon className="w-3.5 h-3.5 text-indigo-600" />
+            ) : (
+              <Sun className="w-3.5 h-3.5 text-amber-500" />
+            )}
             {parameters.is_night ? '야간' : '주간'}
           </button>
         </div>
       </div>
 
-      {/* Main 2D Canvas Area */}
-      <div className="relative w-full overflow-hidden bg-slate-950 flex justify-center">
+      {/* Main 2D Canvas Area (Canvas inside keeps asphalt & headlight visibility, framed in clean borders) */}
+      <div className="relative w-full overflow-hidden bg-slate-950 flex justify-center border-b border-emerald-100">
         <canvas
           ref={canvasRef}
           width={720}
@@ -915,43 +921,43 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
         {/* Live Floating Comparison Badge */}
         {simMode === 'split' ? (
           <div className="absolute bottom-3 left-4 right-4 flex justify-between pointer-events-none">
-            <div className="bg-rose-950/90 border border-rose-500/60 backdrop-blur-md rounded-lg px-3 py-1.5 text-xs text-rose-200 shadow-lg">
+            <div className="bg-white/95 border border-rose-200 backdrop-blur-md rounded-lg px-3 py-1.5 text-xs text-rose-800 shadow-md">
               <span className="font-bold">미설치 생존율:</span> {metrics.baseline.rate}% ({metrics.baseline.safe}마리 생존 / {metrics.baseline.killed}마리 로드킬)
             </div>
-            <div className="bg-emerald-950/90 border border-emerald-500/60 backdrop-blur-md rounded-lg px-3 py-1.5 text-xs text-emerald-200 shadow-lg">
+            <div className="bg-white/95 border border-emerald-200 backdrop-blur-md rounded-lg px-3 py-1.5 text-xs text-emerald-800 shadow-md">
               <span className="font-bold">펜스 설치 생존율:</span> {metrics.fence.rate}% ({metrics.fence.safe}마리 생존 / {metrics.fence.killed}마리 로드킬)
             </div>
           </div>
         ) : (
-          <div className="absolute bottom-3 right-4 bg-slate-950/90 border border-slate-800 backdrop-blur-md rounded-lg px-4 py-2 text-xs flex items-center gap-4 shadow-xl">
+          <div className="absolute bottom-3 right-4 bg-white/95 border border-emerald-200 backdrop-blur-md rounded-lg px-4 py-2 text-xs flex items-center gap-4 shadow-lg text-slate-800">
             <div>
-              <span className="text-slate-400 block text-[10px]">실시간 생존율</span>
-              <span className={`text-base font-extrabold ${activeStats.rate >= 70 ? 'text-emerald-400' : 'text-rose-400'}`}>
+              <span className="text-slate-500 block text-[10px] font-medium">실시간 생존율</span>
+              <span className={`text-base font-extrabold ${activeStats.rate >= 70 ? 'text-emerald-700' : 'text-rose-600'}`}>
                 {activeStats.rate}%
               </span>
             </div>
-            <div className="border-l border-slate-800 pl-3">
-              <span className="text-slate-400 block text-[10px]">안전 횡단</span>
-              <span className="text-emerald-400 font-bold">{activeStats.safe}</span>
+            <div className="border-l border-emerald-100 pl-3">
+              <span className="text-slate-500 block text-[10px] font-medium">안전 횡단</span>
+              <span className="text-emerald-700 font-bold">{activeStats.safe}</span>
             </div>
-            <div className="border-l border-slate-800 pl-3">
-              <span className="text-slate-400 block text-[10px]">로드킬 발생</span>
-              <span className="text-rose-400 font-bold">{activeStats.killed}</span>
+            <div className="border-l border-emerald-100 pl-3">
+              <span className="text-slate-500 block text-[10px] font-medium">로드킬 발생</span>
+              <span className="text-rose-600 font-bold">{activeStats.killed}</span>
             </div>
-            <div className="border-l border-slate-800 pl-3">
-              <span className="text-slate-400 block text-[10px]">총 개체 수</span>
-              <span className="text-slate-200 font-bold">{activeStats.total}</span>
+            <div className="border-l border-emerald-100 pl-3">
+              <span className="text-slate-500 block text-[10px] font-medium">총 개체 수</span>
+              <span className="text-slate-800 font-bold">{activeStats.total}</span>
             </div>
           </div>
         )}
       </div>
 
       {/* Interactive Parameters Quick Sliders */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 bg-slate-900 border-t border-slate-800 text-xs">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 bg-emerald-50/30 border-b border-emerald-100 text-xs">
         <div className="space-y-1">
-          <div className="flex justify-between text-slate-400">
-            <span>차량 속도:</span>
-            <span className="font-semibold text-sky-400">{parameters.car_speed_kmh} km/h</span>
+          <div className="flex justify-between text-slate-600">
+            <span className="font-medium">차량 속도:</span>
+            <span className="font-bold text-sky-700">{parameters.car_speed_kmh} km/h</span>
           </div>
           <input
             type="range"
@@ -965,14 +971,14 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
                 car_speed_kmh: Number(e.target.value),
               })
             }
-            className="w-full accent-sky-500 cursor-pointer"
+            className="w-full accent-emerald-600 cursor-pointer"
           />
         </div>
 
         <div className="space-y-1">
-          <div className="flex justify-between text-slate-400">
-            <span>도로 차선 수:</span>
-            <span className="font-semibold text-emerald-400">{parameters.lanes} 차선</span>
+          <div className="flex justify-between text-slate-600">
+            <span className="font-medium">도로 차선 수:</span>
+            <span className="font-bold text-emerald-700">{parameters.lanes} 차선</span>
           </div>
           <input
             type="range"
@@ -986,14 +992,14 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
                 lanes: Number(e.target.value),
               })
             }
-            className="w-full accent-emerald-500 cursor-pointer"
+            className="w-full accent-emerald-600 cursor-pointer"
           />
         </div>
 
         <div className="space-y-1">
-          <div className="flex justify-between text-slate-400">
-            <span>초기 개체 수:</span>
-            <span className="font-semibold text-amber-400">{parameters.initial_population} 마리</span>
+          <div className="flex justify-between text-slate-600">
+            <span className="font-medium">초기 개체 수:</span>
+            <span className="font-bold text-amber-700">{parameters.initial_population} 마리</span>
           </div>
           <input
             type="range"
@@ -1007,19 +1013,19 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
                 initial_population: Number(e.target.value),
               })
             }
-            className="w-full accent-amber-500 cursor-pointer"
+            className="w-full accent-emerald-600 cursor-pointer"
           />
         </div>
 
-        <div className="flex items-center justify-end gap-2">
-          <div className="p-2 rounded-lg bg-slate-800/80 border border-slate-700 flex items-center gap-2 text-slate-300">
-            <Zap className="w-4 h-4 text-emerald-400" />
-            <span>펜스 설치 시 생존율 <strong>+70%p↑</strong> 보장</span>
+        <div className="flex items-center justify-end">
+          <div className="w-full p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center gap-2 text-emerald-900 font-semibold shadow-xs">
+            <Zap className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span className="text-[11px]">펜스 설치 시 생존율 <strong>+70%p↑</strong> 보장</span>
           </div>
         </div>
       </div>
 
-      {/* ================= 생존 시뮬레이션 결과 종합 분석 대시보드 (직하단 배치) ================= */}
+      {/* ================= 생존 시뮬레이션 결과 종합 분석 대시보드 (직하단 배치 - 흰색/초록색) ================= */}
       {(() => {
         const theoryResults = calculateEcologicalRates(parameters);
         const baselineExpectedDeaths = Math.round(
@@ -1034,28 +1040,28 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
         const exposureTimeSec = Math.round(laneLengthMeters / 0.2);
 
         return (
-          <div className="p-5 bg-slate-950 border-t border-slate-800 flex flex-col gap-4 text-slate-100">
+          <div className="p-5 bg-white flex flex-col gap-5 text-slate-900">
             {/* Section Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-emerald-100">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 shrink-0">
+                <div className="p-2 bg-emerald-100/80 border border-emerald-200 rounded-lg text-emerald-700 shrink-0">
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
                     생존 시뮬레이션 정량 분석 결과 (Simulation Impact Analysis)
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-sky-400 border border-slate-700 font-semibold">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">
                       변인별 동적 연동
                     </span>
                   </h3>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-slate-500 mt-0.5">
                     차선 수·차량 속도·강우·시간대 변인에 따라 현실적으로 가변 산출되는 생존율 및 생태적 편익 데이터입니다.
                   </p>
                 </div>
               </div>
 
-              <div className="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center gap-2 self-start sm:self-auto">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="text-xs text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-2 self-start sm:self-auto font-medium shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>현행 변인 기준 산출 완료</span>
               </div>
             </div>
@@ -1063,154 +1069,154 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
             {/* Core Comparative Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Card 1: Baseline (미설치) */}
-              <div className="p-4 bg-slate-900/90 border border-rose-900/40 rounded-xl space-y-3 shadow-lg">
+              <div className="p-4 bg-white border-2 border-rose-200 rounded-xl space-y-3 shadow-xs">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <ShieldAlert className="w-4 h-4 text-rose-400" />
-                    <span className="text-xs font-bold text-rose-300">
+                    <ShieldAlert className="w-4 h-4 text-rose-600" />
+                    <span className="text-xs font-bold text-rose-800">
                       현행 도로 (유도시설 미설치)
                     </span>
                   </div>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold">
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 font-bold">
                     고위험 (CRITICAL)
                   </span>
                 </div>
 
                 <div className="flex items-baseline justify-between pt-1">
                   <div>
-                    <span className="text-[10px] text-slate-400 block">수리 모델 예측 생존율</span>
-                    <span className="text-2xl font-black text-rose-400">
+                    <span className="text-[10px] text-slate-500 block font-medium">수리 모델 예측 생존율</span>
+                    <span className="text-2xl font-black text-rose-600">
                       {theoryResults.survival_rate_baseline}%
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] text-slate-400 block">시뮬레이터 실시간 실측치</span>
-                    <span className="text-sm font-bold text-slate-300">
+                    <span className="text-[10px] text-slate-500 block font-medium">시뮬레이터 실시간 실측치</span>
+                    <span className="text-sm font-bold text-slate-700">
                       {metrics.baseline.rate}% ({metrics.baseline.safe} 안전 / {metrics.baseline.killed} 로드킬)
                     </span>
                   </div>
                 </div>
 
                 {/* Progress bar */}
-                <div className="w-full bg-slate-800 rounded-full h-2">
+                <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                   <div
-                    className="bg-rose-500 h-2 rounded-full transition-all duration-500"
+                    className="bg-rose-500 h-2.5 rounded-full transition-all duration-500"
                     style={{ width: `${Math.max(5, theoryResults.survival_rate_baseline)}%` }}
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-xs pt-1">
-                  <div className="p-2 bg-slate-950 rounded border border-slate-800/80">
-                    <span className="text-slate-400 block text-[10px]">1회 이동 예상 폐사</span>
-                    <span className="font-bold text-rose-400">약 {baselineExpectedDeaths} 마리</span>
+                  <div className="p-2.5 bg-rose-50/50 rounded-lg border border-rose-100">
+                    <span className="text-slate-600 block text-[10px]">1회 이동 예상 폐사</span>
+                    <span className="font-bold text-rose-700">약 {baselineExpectedDeaths} 마리</span>
                   </div>
-                  <div className="p-2 bg-slate-950 rounded border border-slate-800/80">
-                    <span className="text-slate-400 block text-[10px]">2차 교통사고 리스크</span>
-                    <span className="font-bold text-rose-300">노면 미끄럼 위험 발생</span>
+                  <div className="p-2.5 bg-rose-50/50 rounded-lg border border-rose-100">
+                    <span className="text-slate-600 block text-[10px]">2차 교통사고 리스크</span>
+                    <span className="font-bold text-rose-700">노면 미끄럼 위험 발생</span>
                   </div>
                 </div>
               </div>
 
               {/* Card 2: Optimized with Fence (최적화 후) */}
-              <div className="p-4 bg-slate-900/90 border border-emerald-900/40 rounded-xl space-y-3 shadow-lg">
+              <div className="p-4 bg-white border-2 border-emerald-300 rounded-xl space-y-3 shadow-xs">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                    <span className="text-xs font-bold text-emerald-300">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <span className="text-xs font-bold text-emerald-900">
                       소형 생태통로 & 유도펜스 설치 후
                     </span>
                   </div>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">
                     안전 최적화 (OPTIMIZED)
                   </span>
                 </div>
 
                 <div className="flex items-baseline justify-between pt-1">
                   <div>
-                    <span className="text-[10px] text-slate-400 block">수리 모델 예측 생존율</span>
-                    <span className="text-2xl font-black text-emerald-400">
+                    <span className="text-[10px] text-slate-500 block font-medium">수리 모델 예측 생존율</span>
+                    <span className="text-2xl font-black text-emerald-700">
                       {theoryResults.survival_rate_with_fence}%
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] text-slate-400 block">시뮬레이터 실시간 실측치</span>
-                    <span className="text-sm font-bold text-slate-300">
+                    <span className="text-[10px] text-slate-500 block font-medium">시뮬레이터 실시간 실측치</span>
+                    <span className="text-sm font-bold text-slate-700">
                       {metrics.fence.rate}% ({metrics.fence.safe} 안전 / {metrics.fence.killed} 로드킬)
                     </span>
                   </div>
                 </div>
 
                 {/* Progress bar */}
-                <div className="w-full bg-slate-800 rounded-full h-2">
+                <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                   <div
-                    className="bg-emerald-500 h-2 rounded-full transition-all duration-500"
+                    className="bg-emerald-500 h-2.5 rounded-full transition-all duration-500"
                     style={{ width: `${theoryResults.survival_rate_with_fence}%` }}
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-xs pt-1">
-                  <div className="p-2 bg-slate-950 rounded border border-slate-800/80">
-                    <span className="text-slate-400 block text-[10px]">생존율 비약적 개선</span>
-                    <span className="font-extrabold text-emerald-400">
+                  <div className="p-2.5 bg-emerald-50/60 rounded-lg border border-emerald-100">
+                    <span className="text-slate-600 block text-[10px]">생존율 비약적 개선</span>
+                    <span className="font-extrabold text-emerald-800">
                       +{theoryResults.improvement_percentage}%p 비약적 상승
                     </span>
                   </div>
-                  <div className="p-2 bg-slate-950 rounded border border-slate-800/80">
-                    <span className="text-slate-400 block text-[10px]">직접 구조 개체수</span>
-                    <span className="font-extrabold text-sky-400">약 {savedFauna} 마리 구호</span>
+                  <div className="p-2.5 bg-emerald-50/60 rounded-lg border border-emerald-100">
+                    <span className="text-slate-600 block text-[10px]">직접 구조 개체수</span>
+                    <span className="font-extrabold text-teal-800">약 {savedFauna} 마리 구호</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Environmental Sensitivity Breakdown Cards */}
-            <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-3">
-              <div className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
-                <Sliders className="w-4 h-4 text-sky-400" />
+            <div className="p-4 bg-emerald-50/30 border border-emerald-100 rounded-xl space-y-3">
+              <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                <Sliders className="w-4 h-4 text-emerald-600" />
                 환경 변인별 생태 저항 및 생존율 영향 인자 분석 (Sensitivity Factors)
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 text-xs">
                 {/* Lane factor */}
-                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800 space-y-1">
-                  <div className="text-slate-400 text-[10px] font-semibold flex items-center justify-between">
+                <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs space-y-1">
+                  <div className="text-slate-500 text-[10px] font-semibold flex items-center justify-between">
                     <span>도로 폭 & 차선 수</span>
-                    <span className="text-emerald-400 font-bold">{parameters.lanes}차선</span>
+                    <span className="text-emerald-700 font-bold">{parameters.lanes}차선</span>
                   </div>
-                  <div className="font-semibold text-slate-200">
+                  <div className="font-semibold text-slate-800">
                     노면 폭 약 {laneLengthMeters}m (노출 {exposureTimeSec}초)
                   </div>
-                  <p className="text-[11px] text-slate-400 leading-tight">
+                  <p className="text-[11px] text-slate-500 leading-tight">
                     차선 증가 시 횡단 노출 시간이 급증하여 미설치 시 치명적이며, 암거 연장 길이에 따른 통과 피로 저항이 반영됩니다.
                   </p>
                 </div>
 
                 {/* Speed factor */}
-                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800 space-y-1">
-                  <div className="text-slate-400 text-[10px] font-semibold flex items-center justify-between">
+                <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs space-y-1">
+                  <div className="text-slate-500 text-[10px] font-semibold flex items-center justify-between">
                     <span>차량 주행 속도</span>
-                    <span className="text-sky-400 font-bold">{parameters.car_speed_kmh} km/h</span>
+                    <span className="text-sky-700 font-bold">{parameters.car_speed_kmh} km/h</span>
                   </div>
-                  <div className="font-semibold text-slate-200">
+                  <div className="font-semibold text-slate-800">
                     풍압 및 노면 진동 교란
                   </div>
-                  <p className="text-[11px] text-slate-400 leading-tight">
+                  <p className="text-[11px] text-slate-500 leading-tight">
                     차속 60km/h 초과 시 양서류의 충돌 회피가 물리적으로 불가능하며, 도로변 진동으로 펜스 우회 시도가 일부 발생합니다.
                   </p>
                 </div>
 
                 {/* Rain factor */}
-                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800 space-y-1">
-                  <div className="text-slate-400 text-[10px] font-semibold flex items-center justify-between">
+                <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs space-y-1">
+                  <div className="text-slate-500 text-[10px] font-semibold flex items-center justify-between">
                     <span>기상 (강우 여부)</span>
-                    <span className={`font-bold ${parameters.rain ? 'text-sky-300' : 'text-slate-300'}`}>
+                    <span className={`font-bold ${parameters.rain ? 'text-sky-700' : 'text-slate-600'}`}>
                       {parameters.rain ? '강우 (비 내림)' : '맑음 (건조)'}
                     </span>
                   </div>
-                  <div className="font-semibold text-slate-200">
+                  <div className="font-semibold text-slate-800">
                     {parameters.rain ? '이동 충동 급증 & 수로 범람' : '일반 건조 노면'}
                   </div>
-                  <p className="text-[11px] text-slate-400 leading-tight">
+                  <p className="text-[11px] text-slate-500 leading-tight">
                     {parameters.rain
                       ? '비 오는 날 양서류 이동성은 1.5배 급증하나, 토사 유입 및 암거 침수 위험이 생존율 변동 인자로 작용합니다.'
                       : '맑은 날에는 도로 진입 유인이 상대적으로 낮으나 아스팔트 건조 탈수로 인해 치사율이 여전히 높습니다.'}
@@ -1218,17 +1224,17 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
                 </div>
 
                 {/* Night factor */}
-                <div className="p-3 bg-slate-950 rounded-lg border border-slate-800 space-y-1">
-                  <div className="text-slate-400 text-[10px] font-semibold flex items-center justify-between">
+                <div className="p-3 bg-white rounded-lg border border-emerald-100 shadow-2xs space-y-1">
+                  <div className="text-slate-500 text-[10px] font-semibold flex items-center justify-between">
                     <span>시간대 (조도)</span>
-                    <span className={`font-bold ${parameters.is_night ? 'text-indigo-300' : 'text-amber-300'}`}>
+                    <span className={`font-bold ${parameters.is_night ? 'text-indigo-700' : 'text-amber-700'}`}>
                       {parameters.is_night ? '야간 (어둠)' : '주간 (햇빛)'}
                     </span>
                   </div>
-                  <div className="font-semibold text-slate-200">
+                  <div className="font-semibold text-slate-800">
                     {parameters.is_night ? '전조등 눈부심 패닉' : '암거 명암 대비 기피'}
                   </div>
-                  <p className="text-[11px] text-slate-400 leading-tight">
+                  <p className="text-[11px] text-slate-500 leading-tight">
                     {parameters.is_night
                       ? '야간에는 암거 내외부 조도 차가 적어 터널 진입률이 우수하나, 노면 진입 시 헤드라이트에 의한 굳음 현상이 발생합니다.'
                       : '대낮에는 터널 내부가 어둡게 보여 진입 기피 현상이 발생하므로 상부 채광창 설치가 필수적입니다.'}
@@ -1238,9 +1244,9 @@ export const SimulationCanvas: React.FC<SimulationCanvasProps> = ({
             </div>
 
             {/* Credibility & Policy Callout */}
-            <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-300 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-950 flex items-center justify-between gap-3 shadow-2xs">
+              <div className="flex items-center gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>
                   <strong>신뢰성 보장 모델:</strong> 본 시뮬레이터는 생존율을 100%로 고정하지 않고, 환경 변인(차선·속도·강우·조도)에 따른 생태학적 저항을 실시간 계산하여 신뢰도 높은 정량적 수치를 산출합니다.
                 </span>
