@@ -1,0 +1,6 @@
+{
+  "name": "EcoPass AI - 마이크로 로드킬 예방 & 생태통로 최적화 시스템",
+  "description": "양서류·파충류·곤충의 마이크로 로드킬을 예방하고 지자체 생태통로 설치를 최적화하기 위한 전문 대화형 생태 분석 AI & 2D 시뮬레이터",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
